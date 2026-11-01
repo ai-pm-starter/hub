@@ -39,17 +39,16 @@
 ## Free models (Google AI Studio)
 Checked Nov 1, 2026 on the [pricing page](https://ai.google.dev/gemini-api/docs/pricing). Free tiers change often: re-check before each project.
 
-| Model ID | Free tier | Image input | Use for |
-|---|---|---|---|
-| `gemini-3.8-flash` | Yes | Check | P1 default (in `.env`) |
-| `gemini-3.6-flash` | Yes | Check | Fallback |
-| `gemini-3-flash-preview` | Yes | Yes | Fallback (preview) |
-| `gemini-3.5-flash-lite` | Yes | Yes | Fast, cheap calls |
-| `gemini-3.1-flash-lite` | Yes | Yes | Fast, cheap calls |
-| `gemini-2.5-pro` | Yes | Yes | Hardest reasoning, low rate limits |
-| `gemini-2.5-flash` / `gemini-2.5-flash-lite` | Yes | Yes | Stable fallback |
+All models below are on the free tier.
 
-Known issue (Nov 1): `gemini-3.8-flash` is listed for our key but `generateContent` calls time out with no response. Test it before relying on it; fall back to a 2.5 model if it still hangs.
+| Model ID | Tested Nov 1 | Image input | Use for |
+|---|---|---|---|
+| `gemini-3.6-flash` | ✅ 2 s | Check in P1-02 | **P1 default (in `.env`)** |
+| `gemini-3-flash-preview` | ✅ 1 s | Yes | Fallback if 3.6 can't read images (preview: may change) |
+| `gemini-3.1-flash-lite` | ✅ <1 s | Yes | Fast, cheap calls |
+| `gemini-3.8-flash` | ❌ hangs (both APIs) | Check | Google's recommended model: retry later |
+| `gemini-3.5-flash-lite`, `gemini-flash-latest` | ❌ timed out | Yes / – | Retry later |
+| `gemini-2.5-*` | ❌ closed to new users | – | Not usable |
 
 Not free: `gemini-4-argon`, `gemini-3.1-pro-preview`, image-generation models.
 Free-tier prompts and outputs may be used by Google to improve its products: never send personal data.
